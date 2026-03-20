@@ -1,0 +1,42 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+.search-box {
+    margin-bottom: 30px;
+}
+#search-input {
+    padding: 10px;
+    width: 60%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+#search-btn {
+    padding: 10px 20px;
+    background-color: #ff4848;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.recipe-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.recipe-card img {
+    width: 100%;
+    border-radius: 5px;
+}
