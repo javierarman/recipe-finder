@@ -1,6 +1,7 @@
 const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-input');
 const recipeContainer = document.getElementById('recipe-container');
+const spinner = document.getElementById('loading-spinner');
 
 searchBtn.addEventListener('click', () => {
     const query = searchInput.value;
@@ -10,18 +11,26 @@ searchBtn.addEventListener('click', () => {
 });
 
 async function fetchRecipes(query) {
-    // Correct API URL structure for TheMealDB
+
+    spinner.style.display = 'block';
+    recipeContainer.innerHTML = "";
+
+    try {
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+        const data = await response.json();
+        displayRecipes(data.meals);
+    } catch(error){
+        console.error("Fetch error:", error);
+        recipeContainer.innerHTML ="<p>Something went wrong.Please try again later.</p>"
+    } finally {
+        spinner.style.display = 'none';
+    }
     
-const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
-
-
-    const data = await response.json();
-    displayRecipes(data.meals);
 }
 
 
 function displayRecipes(meals) {
-    recipeContainer.innerHTML = ""; // Clear old results
+    
     if (!meals) {
         recipeContainer.innerHTML = "<p>No recipes found. Try another search!</p>";
         return;
