@@ -2,6 +2,9 @@ const searchBtn = document.getElementById('search-btn');
 const searchInput = document.getElementById('search-input');
 const recipeContainer = document.getElementById('recipe-container');
 const spinner = document.getElementById('loading-spinner');
+const modal = document.getElementById('recipe-modal');
+const modalBody = document.getElementById('modal-body');
+const closeBtn = document.querySelector('.close-btn');
 
 searchBtn.addEventListener('click', () => {
     const query = searchInput.value;
@@ -27,10 +30,16 @@ async function fetchRecipes(query) {
     }
     
 }
+    //Close modal when "X" is clicked
+    closeBtn.onclick = () => modal.style.display = "none";
 
+    // Close modal if user clicks outside the white box
+    window.onclick = (event) =>{
+        if(event.target == modal) modal.style.display = "none";
+    }
 
 function displayRecipes(meals) {
-    
+    recipeContainer.innerHTML = ""; 
     if (!meals) {
         recipeContainer.innerHTML = "<p>No recipes found. Try another search!</p>";
         return;
@@ -42,8 +51,23 @@ function displayRecipes(meals) {
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
             <h3>${meal.strMeal}</h3>
             <p>${meal.strCategory} | ${meal.strArea}</p>
-            <a href="${meal.strSource || '#'}" target="_blank">View Recipe</a>
+            <button class="view-btn">View Recipe</button>
         `;
+
+        card.querySelector('.view-btn').addEventListener('click',()=>{
+            showRecipeModal(meal);
+        });
+
+
         recipeContainer.appendChild(card);
     });
+}
+
+function showRecipeModal(meal){
+    modalBody.innerHTML=`
+    <h2>${meal.strMeal}</h2>
+    <img src="${meal.strMealThumb}" style="width:100%; border-radius:10px;" >
+    <h3>Instructions:</h3>
+    <p>${meal.strInstructions}</p>
+    `;
 }
