@@ -31,7 +31,9 @@ async function fetchRecipes(query) {
     
 }
     //Close modal when "X" is clicked
-    closeBtn.onclick = () => modal.style.display = "none";
+    closeBtn.addEventListener('click', () => {
+    modal.style.display = "none";
+});
 
     // Close modal if user clicks outside the white box
     window.onclick = (event) =>{
@@ -48,7 +50,7 @@ function displayRecipes(meals) {
         const card = document.createElement('div');
         card.classList.add('recipe-card');
         card.innerHTML = `
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" class="recipe-img" >
             <h3>${meal.strMeal}</h3>
             <p>${meal.strCategory} | ${meal.strArea}</p>
             <button class="view-btn">View Recipe</button>
