@@ -66,8 +66,9 @@ function displayRecipes(meals) {
 function showRecipeModal(meal){
     modalBody.innerHTML=`
     <h2>${meal.strMeal}</h2>
-    <img src="${meal.strMealThumb}" style="width:100%; border-radius:10px;" >
-    <h3>Instructions:</h3>
-    <p>${meal.strInstructions}</p>
+        <img src="${meal.strMealThumb}" style="width:100%; border-radius:10px;">
+        <h3>Instructions:</h3>
+        <p>${meal.strInstructions}</p>
     `;
+    modal.style.display = 'flex'; 
 }
