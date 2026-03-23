@@ -54,10 +54,9 @@ function displayRecipes(meals) {
             <button class="view-btn">View Recipe</button>
         `;
 
-        card.querySelector('.view-btn').addEventListener('click',()=>{
-            showRecipeModal(meal);
-        });
+        card.querySelector('.view-btn').onclick = () => showRecipeModal(meal);
 
+        card.querySelector('.recipe-img').onclick = () => showRecipeModal(meal);
 
         recipeContainer.appendChild(card);
     });
