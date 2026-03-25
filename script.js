@@ -23,7 +23,7 @@ searchInput.addEventListener('keypress', (e)=>{
 async function fetchRecipes(query) {
 
     recipeContainer.innerHTML = "";
-
+     spinner.style.display = 'block'; 
     try {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
         const data = await response.json();
@@ -34,6 +34,7 @@ async function fetchRecipes(query) {
     } finally {
         spinner.style.display = 'none';
     }
+    
     
 }
     //Close modal when "X" is clicked
@@ -89,3 +90,21 @@ closeBtn.onclick = () => modal.style.display = "none";
 window.onclick = (event) => {
     if (event.target === modal) modal.style.display = "none";
 };
+
+// This function builds the ingredients list for the modal
+function getIngredients(meal) {
+    let list = "";
+    for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+        
+        // If the ingredient exists and isn't empty, add it to the list
+        if (ingredient && ingredient.trim() !== "") {
+            list += `<li>${measure} ${ingredient}</li>`;
+        } else {
+            // Stop the loop if no more ingredients are found
+            break;
+        }
+    }
+    return list;
+}

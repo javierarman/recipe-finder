@@ -41,13 +41,27 @@ body {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    
 }
 .recipe-card img {
     width: 100%;
     height: 200px; /* Fixed height */
     object-fit: cover; /* Prevents stretching */
     border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    background-color: #eee; /* Shows a light gray box while loading */
 }
+
+.recipe-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    transition: transform 0.2s;
+}
+
+.recipe-card button{
+    cursor: pointer;
+}
+
 
 .spinner {
   width: 50px;
@@ -74,36 +88,48 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.7); /* Dark semi-transparent background */
+    cursor: pointer;
 }
 
 /* Modal Box */
 /* This matches your JS "recipe-modal" ID */
 #recipe-modal {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85); /* Slightly darker for better focus */
+    z-index: 9999; /* Ensure it's on top of everything */
     justify-content: center;
     align-items: center;
+    padding: 20px; /* Space for mobile screens */
+    
+}
+
+
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 650px; /* Limits the width */
+    max-height: 90vh; /* Limits the height to 90% of the screen */
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    overflow-y: auto; /* Adds scrollbar INSIDE the box if content is long */
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
 }
 
 #modal-body img {
-    max-height: 40vh; /* Limits image to 40% of the screen height */
-    width: 50px;
-    object-fit: cover; /* Crops the image to fit nicely without stretching */
+    width: 100%;
+    max-height: 350px; /* Prevents the image from taking over the screen */
+    object-fit: cover;
     border-radius: 10px;
-    margin-bottom: 15px;
-    display: block;
+    margin-bottom: 20px;
+    
 }
-
-.modal-content {
-    max-height: 90vh; /* Modal won't exceed 90% of screen height */
-    overflow-y: auto; /* Adds a scrollbar if content is long */
-}
-
-
 
 .close-btn {
     position: absolute;
