@@ -91,7 +91,7 @@ body {
 
 #modal-body img {
     max-height: 40vh; /* Limits image to 40% of the screen height */
-    width: 100%;
+    width: 50px;
     object-fit: cover; /* Crops the image to fit nicely without stretching */
     border-radius: 10px;
     margin-bottom: 15px;
