@@ -72,32 +72,14 @@ function displayRecipes(meals) {
 
 function showRecipeModal(meal){
 
-     let ingredientsList = "";
-    for (let i = 1; i <= 20; i++) {
-        const ingredient = meal[`strIngredient${i}`];
-        const measure = meal[`strMeasure${i}`];
-        if (ingredient) {
-            ingredientsList += `<li>${measure} ${ingredient}</li>`;
-        } else {
-            break;
-        }
-    }
-
-    modalBody.innerHTML=`
-     <div class="modal-header">
-            <h2>${meal.strMeal}</h2>
-        </div>
-        <div class="modal-main-content">
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
-            <div class="recipe-info">
-                <h3>Category: ${meal.strCategory}</h3>
-                <h3>Origin: ${meal.strArea}</h3>
-            </div>
-        </div>
-        <div class="modal-details">
-            <h3>Instructions:</h3>
-            <p style="white-space: pre-line;">${meal.strInstructions}</p>
-        </div>
+     modalBody.innerHTML = `
+        <h2>${meal.strMeal}</h2>
+        <!-- Remove the inline width/border-radius here; let CSS handle it -->
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        <h3>Ingredients:</h3>
+        <ul>${getIngredients(meal)}</ul>
+        <h3>Instructions:</h3>
+        <p style="white-space: pre-line;">${meal.strInstructions}</p>
     `;
     modal.style.display = 'flex'; 
 }

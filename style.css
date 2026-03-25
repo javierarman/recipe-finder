@@ -89,18 +89,21 @@ body {
     align-items: center;
 }
 
-.modal-content {
-    scrollbar-width: thin; /* For Firefox */
-    -webkit-overflow-scrolling: touch;
+#modal-body img {
+    max-height: 40vh; /* Limits image to 40% of the screen height */
+    width: 100%;
+    object-fit: cover; /* Crops the image to fit nicely without stretching */
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: block;
 }
 
-#modal-body img {
-    max-height: 300px; /* Limits the vertical space the image takes */
-    width: auto;       /* Maintains aspect ratio */
-    display: block;    /* Centers the image */
-    margin: 0 auto 15px; 
-    object-fit: cover; /* Ensures it looks good if it needs to fill space */
+.modal-content {
+    max-height: 90vh; /* Modal won't exceed 90% of screen height */
+    overflow-y: auto; /* Adds a scrollbar if content is long */
 }
+
+
 
 .close-btn {
     position: absolute;
