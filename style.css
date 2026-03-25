@@ -94,6 +94,14 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+#modal-body img {
+    max-height: 300px; /* Limits the vertical space the image takes */
+    width: auto;       /* Maintains aspect ratio */
+    display: block;    /* Centers the image */
+    margin: 0 auto 15px; 
+    object-fit: cover; /* Ensures it looks good if it needs to fill space */
+}
+
 .close-btn {
     position: absolute;
     top: 10px; right: 15px;

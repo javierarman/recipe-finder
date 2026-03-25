@@ -84,12 +84,20 @@ function showRecipeModal(meal){
     }
 
     modalBody.innerHTML=`
-     <h2>${meal.strMeal}</h2>
-        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width:100%; border-radius:10px; margin-bottom:15px;">
-        <h3>Ingredients:</h3>
-        <ul>${ingredientsList}</ul>
-        <h3>Instructions:</h3>
-        <p style="white-space: pre-line;">${meal.strInstructions}</p>
+     <div class="modal-header">
+            <h2>${meal.strMeal}</h2>
+        </div>
+        <div class="modal-main-content">
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+            <div class="recipe-info">
+                <h3>Category: ${meal.strCategory}</h3>
+                <h3>Origin: ${meal.strArea}</h3>
+            </div>
+        </div>
+        <div class="modal-details">
+            <h3>Instructions:</h3>
+            <p style="white-space: pre-line;">${meal.strInstructions}</p>
+        </div>
     `;
     modal.style.display = 'flex'; 
 }
