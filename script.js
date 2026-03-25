@@ -13,9 +13,15 @@ searchBtn.addEventListener('click', () => {
     }
 });
 
+searchInput.addEventListener('keypress', (e)=>{
+    if(e.key === 'Enter'){
+        const query  = searchInput.value.trim();
+        if(query) fetchRecipes(query);
+    }
+});
+
 async function fetchRecipes(query) {
 
-    spinner.style.display = 'block';
     recipeContainer.innerHTML = "";
 
     try {
@@ -56,8 +62,8 @@ function displayRecipes(meals) {
             <button class="view-btn">View Recipe</button>
         `;
 
+         // Click events for both image and button
         card.querySelector('.view-btn').onclick = () => showRecipeModal(meal);
-
         card.querySelector('.recipe-img').onclick = () => showRecipeModal(meal);
 
         recipeContainer.appendChild(card);
@@ -65,11 +71,31 @@ function displayRecipes(meals) {
 }
 
 function showRecipeModal(meal){
+
+     let ingredientsList = "";
+    for (let i = 1; i <= 20; i++) {
+        const ingredient = meal[`strIngredient${i}`];
+        const measure = meal[`strMeasure${i}`];
+        if (ingredient) {
+            ingredientsList += `<li>${measure} ${ingredient}</li>`;
+        } else {
+            break;
+        }
+    }
+
     modalBody.innerHTML=`
-    <h2>${meal.strMeal}</h2>
-        <img src="${meal.strMealThumb}" style="width:100%; border-radius:10px;">
+     <h2>${meal.strMeal}</h2>
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" style="width:100%; border-radius:10px; margin-bottom:15px;">
+        <h3>Ingredients:</h3>
+        <ul>${ingredientsList}</ul>
         <h3>Instructions:</h3>
-        <p>${meal.strInstructions}</p>
+        <p style="white-space: pre-line;">${meal.strInstructions}</p>
     `;
     modal.style.display = 'flex'; 
 }
+// Close modal logic
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.onclick = (event) => {
+    if (event.target === modal) modal.style.display = "none";
+};

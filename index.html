@@ -8,8 +8,12 @@
 </head>
 <body>
     <div class="container">
+        <header>
         <h1>Recipe Finder</h1>
+        </header>
+        <main>
         <div class="search-box">
+            <label for="search-input">Search for a recipe:</label>
             <input type="text" id="search-input" placeholder="Search for a meal (e.g., Chicken)">
             <button id="search-btn">Search</button>
         </div>
@@ -18,6 +22,7 @@
         <div id="recipe-container" class="recipe-grid">
             <!-- Recipes will be injected here by JavaScript -->
         </div>
+        </main>
     </div>
     <!-- The Modal Container -->
     <div id="recipe-modal" class="modal-overlay ">
@@ -29,6 +34,6 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

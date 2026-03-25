@@ -25,6 +25,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+#search-btn:hover {
+    background-color: #e63e3e;
+    transition: background 0.3s ease;
+}
+
 .recipe-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -38,6 +44,8 @@ body {
 }
 .recipe-card img {
     width: 100%;
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Prevents stretching */
     border-radius: 5px;
 }
 
@@ -82,15 +90,8 @@ body {
 }
 
 .modal-content {
-    background: white;
-    padding: 30px 20px 20px 20px;
-    border-radius: 12px;
-    max-width: 600px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-    position: relative;
-    text-align: left; /* Better for reading instructions */
+    scrollbar-width: thin; /* For Firefox */
+    -webkit-overflow-scrolling: touch;
 }
 
 .close-btn {
